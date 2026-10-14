@@ -10,7 +10,7 @@ written, and `mac-rar.js` from StarGrimoire's `js/rar.js`, renamed so that
 one rule, a site's `js/mac-*.js`, finds every copy. The maintainer asked
 whether the readers belonged in a repository the games share, since three
 sites now copy them (grimoire, StarGrimoire, and SnoidGrimoire for
-Zoombinis), and chose the account and the name.
+Zoombinis), and chose the account and the name. It was made under e-z-g and moved to ratlizard, beside grimoire, the same day at the maintainer's asking; GitHub redirects the old address.
 
 Two headers changed on the way. `mac-rar.js` no longer calls itself
 StarGrimoire's own. `mac-geneva.js` names its licences where they now sit,
