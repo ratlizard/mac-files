@@ -1,0 +1,43 @@
+# What the licence covers, and what it does not
+
+The work in this repository, `js/`, `utilities/` and the documentation
+beside them, is copyright (c) 2026 e-z-g and licensed under the GNU General
+Public License, **version 3 or (at your option) any later version**.
+`LICENSE` holds the full text.
+
+## Ported, with attribution
+
+**`js/mac-stuffitx.js`, `js/mac-compactpro.js` and `js/mac-rar.js`** are
+ported from **XADMaster**, The Unarchiver's library
+(<https://github.com/MacPaw/XADMaster>, "Copyright (c) 2017-present, MacPaw
+Way Ltd."), licensed **LGPL-2.1-or-later**, whose section 3 lets it be used
+under the GPL, as it is here. Each file's header names the sources it was
+ported from and the commit. `js/mac-stuffitx-english.js` is the English
+preprocessing's dictionary, unpacked from XADMaster's.
+
+**`js/mac-stuffit.js`**'s method 13 and Arsenic decoders and its header
+layouts are ported from **stuffit-rs** by **Ben Letchford** (MIT OR
+Apache-2.0), which carries The Unarchiver's tables.
+
+**`js/mac-hfs.js`** is ported from `src/disk_image/hfs.rs` in **systemless**
+by **Ben Letchford** (<https://github.com/benletchford/systemless>,
+GPL-3.0-or-later).
+
+## Not covered
+
+**`js/mac-geneva.js`** carries two things that are not this repository's.
+`GENEVA9_TTF` is **Geneva 9** by **Kelsey Higham**
+(<https://fontstruct.com/fontstructions/show/349277>), as its TrueType
+download, unmodified and encoded as base64; it is licensed under the
+**Creative Commons Attribution 3.0** licence, and its licence and the readme
+FontStruct requires to travel with it are `licences/Geneva9-LICENSE.txt` and
+`licences/Geneva9-README.txt`. `GENEVA_METRICS` is the advances and left
+bearings of **Kurrajong 9** and **Kurrajong 10**, Copyright (c) 2026 **Ben
+Letchford**, licensed under the **SIL Open Font License 1.1** with the
+Reserved Font Name "Systemless"; the numbers only, none of Kurrajong's
+pixels, and the licence is `licences/Kurrajong-OFL.txt`. A site that copies
+the file carries these with it. Geneva itself is Apple's; this is a clone
+of the bitmap, and Apple's Geneva is not here.
+
+No game's files are in this repository, and none are needed to run its
+check.
