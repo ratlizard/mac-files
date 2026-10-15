@@ -26,3 +26,36 @@ and node's DEFLATE at four levels inflates through `inflateRaw`.
 `crc32`, a file that does not parse, one byte flipped in each written file,
 an instruction compared with a different word) and all nine were caught.
 The decoders' real tests stay in the sites, which have the archives.
+
+## `mac-hfs.js`: index keys at full width, tree files filling their blocks, no start blocks (15 October 2026)
+
+A Cythera disk this wrote for Infinite Mac, with three catalog levels,
+mounted and read on Mac OS 7.6, but the Finder could not move a file into a
+folder there (error -127) and the game, which creates a file beside its
+save without checking the result, read garbage on opening a save in that
+folder. The same save opened from another volume, or from the volume's top
+folder, loaded. `fsck_hfs` (macOS still checks plain HFS, through
+`hdiutil attach -nomount` on a copy) stopped at the extents file's size,
+then at a catalog index key of 27 bytes where it expects 37, then at 41
+file records with non-zero reserved fields. Three changes, each matching
+what Apple's HFS writes on the maintainer's own upload, which `fsck_hfs`
+passes:
+
+- an index record's key is padded to the tree's key length, with the
+  length byte 37 and the child pointer at offset 38 -- the middle of the
+  three forms the header says were mounted; the variable form mounts but
+  takes no insertions on 7.6;
+- each B-tree file takes as many more free nodes as fill its last
+  allocation block, so its logical size is its whole allocation (on volumes
+  of 512-byte blocks this was already so);
+- `filStBlk` and `filRStBlk` stay 0; the forks are found through the
+  extent records.
+
+Rebuilt with the change, the same disk passes `fsck_hfs`, and on 7.6 the
+save opens from that folder and saves there. systemless's reader, which
+this writer was ported from, only reads, walks the leaf chain without
+opening an index node and reads forks through the extent records, so it
+has none of the three. grimoire's `hfs_check.mjs` checks all three now;
+against the old writer the key length and start blocks fail and the
+block fill cannot, its volumes using 512-byte blocks. Whether the
+desktop-file alert in the header is the same fault is untested.
