@@ -59,3 +59,19 @@ has none of the three. grimoire's `hfs_check.mjs` checks all three now;
 against the old writer the key length and start blocks fail and the
 block fill cannot, its volumes using 512-byte blocks. Whether the
 desktop-file alert in the header is the same fault is untested.
+
+## Comments and messages reworded to the wording rules (16 October 2026)
+
+`node tools/wording/wording-check.js` in the workspace (cythera-workbench's
+`workspace/tools/wording/`) found 351 places in `js/` where code or data
+was described as an agent (says, holds, takes, keeps, wants, refuses) or
+with an emphatic "own". Each was reworded in place: comments, and the error
+messages of `mac-ppc-asm.js`, `mac-resfork.js`, `mac-rar.js`,
+`mac-stuffit.js`, `mac-stuffitx.js`, `mac-qtmusic.js` and `mac-zip.js`. No
+grimoire check matches those messages. The one string a page shows,
+`mac-rsrc-types.js`'s empty help page ("This page has no text."), moved
+grimoire's resource snapshot, re-pinned there; nothing else it hashes
+changed. `utilities/check.mjs` passes, and grimoire's `check_all` passes
+with the copies. The rule reads one line at a time, so a phrase broken
+across two lines ("the archive's" / "own maps") is not caught; the one
+seen was fixed by hand.
