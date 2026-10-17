@@ -20,7 +20,7 @@
    PPMd, variant H, which this file reads too. And a stretch of output may
    be put through a filter, sent as a program for RAR's virtual machine:
    the ones WinRAR wrote are known by their programs' CRC-32, and are run
-   here as separate code, as XADMaster runs them: E8 and E8E9 (x86
+   here as native code, as XADMaster runs them: E8 and E8E9 (x86
    call addresses), delta and audio. Any other program throws.
 
    PORTED, not written independently, from XADMaster, The Unarchiver's
@@ -178,7 +178,7 @@ const RAR_SHORT_BITS = [2,2,3,4,5,6,6,6];
 const RAR_FILTERS = { '1d:0e06077d': 'delta', 'd8:bc85e701': 'audio', '35:ad576887': 'e8', '39:3cd7e57e': 'e8e9' };
 
 /* The files of one solid run, decompressed one after another into one
-   array, each from separate compressed data; the filters run over it after. */
+   array, each from its compressed data; the filters run over it after. */
 function rar30Decode(bytes, files) {
   const total = files.reduce((a, f) => a + f.size, 0);
   const win = new Uint8Array(total);
@@ -393,7 +393,7 @@ function rarApplyFilters(win, filters) {
   let prevStart = -1, prevLength = -1;
   for (const f of filters) {
     if (typeof f.kind !== 'string' || f.kind.indexOf(':') >= 0)
-      throw new Error('RAR: a filter program this page does not read (' + f.kind + ')');
+      throw new Error('RAR: a filter program this page does not recognise (' + f.kind + ')');
     const chained = f.start === prevStart && f.length === prevLength;
     const length = f.registers[4];   // XADMaster uses the register, not the block length
     const blockLen = f.length;

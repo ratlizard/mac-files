@@ -75,3 +75,13 @@ changed. `utilities/check.mjs` passes, and grimoire's `check_all` passes
 with the copies. The rule reads one line at a time, so a phrase broken
 across two lines ("the archive's" / "own maps") is not caught; the one
 seen was fixed by hand.
+
+## The rewording's second pass: sentences rewritten whole (16 October 2026)
+
+The first pass swapped the flagged word for one from the rule's list, one
+line at a time, and 34 sentences came out stilted or slightly off ("this
+byte gives how many more", "the table has how long it is", "BO sets what
+is tested"). Each was rewritten as a sentence after reading the whole
+word-diff of the first pass. The one error message changed is `mac-rar.js`'s
+"a filter program this page does not recognise". The wording hook and the
+whole scan now say to rewrite the sentence rather than swap the word.
