@@ -39,7 +39,9 @@ against The Unarchiver's `unar`; this repository holds none of those files.
 So a change lands here only once a site that copies the file passes its
 checks with the change copied in, grimoire first if it has the file; each
 other site that has it takes the copy on its next piece of work, and its
-copies check fails until it does.
+copies check fails until it does. Grimoire's checks on GitHub read a front's
+branch of mac-files when it has the same name as grimoire's, and the
+workspace's `front.sh land` pushes that branch before it waits for them.
 
 `node utilities/check.mjs` is this repository's own check, which needs no
 game: the files load together, no two declare the same name, and what they
