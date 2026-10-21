@@ -85,3 +85,9 @@ is tested"). Each was rewritten as a sentence after reading the whole
 word-diff of the first pass. The one error message changed is `mac-rar.js`'s
 "a filter program this page does not recognise". The wording hook and the
 whole scan now say to rewrite the sentence rather than swap the word.
+
+## No sentence ends on a dangling conjunction or adverb (20 October 2026)
+
+Sixteen comments that ended on a word left hanging ("as before.", "at
+once.", "stored or not.", "the byte after.") were written out in full, in
+eleven files; grimoire and the player took the copies. No code changed.
