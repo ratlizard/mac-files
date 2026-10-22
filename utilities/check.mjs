@@ -38,7 +38,7 @@ const part = (name, fn) => {
 part('names', () => {
   const all = { ...source, ...extra };
   const bad = Object.keys(all).filter(f => !all[f].startsWith('/* ' + f + ' '));
-  return bad.length ? 'not named on the first line: ' + bad.join(', ') : null;
+  return bad.length ? 'not named on the first line (' + bad.join(', ') + ')' : null;
 });
 
 // No top-level name in two files: a page loads them all as classic scripts,
@@ -90,7 +90,7 @@ part('resource fork', () => {
 part('macbinary', () => {
   const f = { name: 'Ünïcode file', type: 'TEXT', creator: 'ttxt', data: sample(1000), rsrc: sample(77) };
   const back = g.sniffMacContainer(flip(g.writeMacBinary(f)));
-  if (!back) return 'not recognised';
+  if (!back) return 'not recognized';
   for (const k of ['name', 'type', 'creator']) if (back[k] !== f[k]) return k + ' read back as ' + back[k];
   return same(back.data, f.data) && same(back.rsrc, f.rsrc) ? null : 'a fork read back changed';
 });
@@ -103,18 +103,18 @@ part('zip', () => {
   ]);
   const archive = g.parseZipArchive(zip);
   const z = flip(zip);
-  for (const [name, want] of [['stored.bin', plain], ['folder/deflated.bin', packed]]) {
+  for (const [name, expected] of [['stored.bin', plain], ['folder/deflated.bin', packed]]) {
     const e = archive.entries.find(x => x.path === name);
     if (!e) return name + ' not listed';
-    if (!same(g.zipFork(z, e, 'data'), want)) return name + ' read back changed';
+    if (!same(g.zipFork(z, e, 'data'), expected)) return name + ' read back changed';
   }
 });
 
 part('inflate', () => {
   for (const level of [0, 1, 6, 9]) {
-    const want = sample(200000 + level);
-    const got = g.inflateRaw(flip(zlib.deflateRawSync(want, { level })), want.length, 8);
-    if (!same(got, want)) return 'level ' + level + ' inflated wrongly';
+    const expected = sample(200000 + level);
+    const actual = g.inflateRaw(flip(zlib.deflateRawSync(expected, { level })), expected.length, 8);
+    if (!same(actual, expected)) return 'level ' + level + ' inflated wrongly';
   }
 });
 
@@ -127,8 +127,8 @@ part('powerpc', () => {
     const d = g.ppcDecode(w);
     if (!d) return w.toString(16) + ' not decoded';
     const back = g.ppcAssemble(d.text, 0);
-    const want = (CONTROL ? w ^ 0x200000 : w) >>> 0;
-    if (back >>> 0 !== want) return d.text + ' assembled as ' + (back >>> 0).toString(16) + ', not ' + want.toString(16);
+    const expected = (CONTROL ? w ^ 0x200000 : w) >>> 0;
+    if (back >>> 0 !== expected) return d.text + ' assembled as ' + (back >>> 0).toString(16) + ', not ' + expected.toString(16);
   }
 });
 
