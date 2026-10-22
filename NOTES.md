@@ -109,3 +109,21 @@ nothing read it for a direct picture until the writer. systemless and
 alchemy/port draw pictures without returning where the rows end, so neither
 has a counterpart to that slip. `utilities/check.mjs` passes, and grimoire's
 checks pass with the copy.
+
+## The Finder flags in MacBinary, and the icons, cursors and patterns written back (21 October 2026)
+
+`writeMacBinary` writes `f.finderFlags`, the high byte at 73 and the low
+byte at 101, and wrote none before: an application came out without
+hasBundle (0x2000), so the Finder never read its BNDL and the application
+and its documents had blank icons. A grimoire visitor saw that on the
+program Replacement Files gave. `mac-rsrc-types.js` has `rsrcReplaceImage`
+and `rsrcImagePlanes` beside `pictReplacePixels`, for ICN#, ics#, icl4,
+icl8, ics4, ics8, CURS, crsr, cicn and ppat: an unchanged pixel retains its
+bits, so a picture saved and put back unchanged is the same bytes, and the
+PNG's alpha is the mask where the resource has one. `paletteIndexer` is the
+colour rule the PICT writer used, now shared. `decode1bitIcon` draws an
+ICN#'s or ics#'s mask as transparency when asked (`masked`), so that a PNG
+saved from one has the mask; the resource snapshot calls it without the
+flag and does not move. Grimoire's `image_write_check.mjs` round-trips all
+139 image resources of Cythera's two forks. `utilities/check.mjs` passes,
+and grimoire's checks pass with the copies.
