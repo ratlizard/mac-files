@@ -140,3 +140,19 @@ tempo's `us` is `microsPerBeat`. `utilities/check.mjs` passes, and grimoire's fu
 the copies. Nothing outside these files read `needs` or `us`. Grimoire's two readers of a Lite's
 center changed with it. SnoidGrimoire, StarGrimoire and the player copy these files in their next
 piece of work.
+
+## The readers' messages reworded (22 October 2026)
+
+At the maintainer's word, the readers' error messages and the text they show
+had the plain-English pass grimoire's pages had (`cythera-workbench/doc/GRIMOIRE-NOTES.md`,
+under `grimoire/prose-pass-he47ij`). Most read well and stayed. What changed:
+a passive became what the page cannot do ("The page cannot write an indexed
+image of 16 bits"); the RAR reader's "a length past reason", "numbered out of
+turn" and doubled "compressed" went; "yielded", "begins wrongly" and "were
+expected" became plain; and the two em dashes in the 68K CODE text became a
+colon and a comma. Seven files: `mac-installshield.js`, `mac-qtmusic.js`,
+`mac-rar.js`, `mac-rsrc-types.js`, `mac-stuffit.js`, `mac-stuffitx.js`,
+`mac-vise.js`. `utilities/check.mjs` passes, and grimoire's full suite passes
+with the copies once its resource snapshot moved for the CODE text (the old
+hash came back with the two dashes put back alone). The player copies four of
+them. SnoidGrimoire and StarGrimoire copy them in their next piece of work.
