@@ -91,3 +91,21 @@ whole scan now say to rewrite the sentence rather than swap the word.
 Sixteen comments that ended on a word left hanging ("as before.", "at
 once.", "stored or not.", "the byte after.") were written out in full, in
 eleven files; grimoire and the player took the copies. No code changed.
+
+## A PICT's pixels written back (21 October 2026)
+
+`mac-rsrc-types.js` has `pictReplacePixels(data, rgba, W, H)`, with
+`pictImageLayout` and `packBitsUnits` beside it: a picture with its one
+image's pixels replaced and every other byte as it was, in the same form
+(indexed in the same colour table, 16-bit packed by the word, 32-bit
+packed by the plane, or the 1-bit bitmap). An unchanged pixel of an
+indexed picture is given the index it had; another colour the first exact
+match in the table, else the nearest. Grimoire uses it for Replace with a
+PNG on a PICT's page, and its `pict_write_check.mjs` round-trips all
+twenty-one PICTs of Cythera's two forks through the decoder. The decoder
+also returned `end` as undefined for every direct picture
+(`decodeDirectBitsRows` names it `p`), corrected in the same change;
+nothing read it for a direct picture until the writer. systemless and
+alchemy/port draw pictures without returning where the rows end, so neither
+has a counterpart to that slip. `utilities/check.mjs` passes, and grimoire's
+checks pass with the copy.
