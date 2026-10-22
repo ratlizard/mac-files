@@ -127,3 +127,16 @@ saved from one has the mask; the resource snapshot calls it without the
 flag and does not move. Grimoire's `image_write_check.mjs` round-trips all
 139 image resources of Cythera's two forks. `utilities/check.mjs` passes,
 and grimoire's checks pass with the copies.
+
+## Standard names in the readers (22 October 2026)
+
+The last names that were not standard are changed, to match grimoire and the workbench
+(`cythera-workbench/doc/GRIMOIRE-NOTES.md`, *Standard names in the code*). A Lite's `centre` key is
+`center`. `dclExplode`'s and `inflateRaw`'s `expected` is `outputLength`, because it is a length and
+not one side of a comparison, and so is `viseStream`'s and `viseDecodeStream`'s `needed`. In
+`writeResourceFork`, `wantedTypes` is `typeOrder` and `known` is `presentTypes`. The VISE reader's
+`refused` is `installerError`, StuffIt X's error property `needs` is `requiredFile`, and a MIDI
+tempo's `us` is `microsPerBeat`. `utilities/check.mjs` passes, and grimoire's full suite passes with
+the copies. Nothing outside these files read `needs` or `us`. Grimoire's two readers of a Lite's
+center changed with it. SnoidGrimoire, StarGrimoire and the player copy these files in their next
+piece of work.
