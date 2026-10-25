@@ -156,3 +156,19 @@ colon and a comma. Seven files: `mac-installshield.js`, `mac-qtmusic.js`,
 with the copies once its resource snapshot moved for the CODE text (the old
 hash came back with the two dashes put back alone). The player copies four of
 them. SnoidGrimoire and StarGrimoire copy them in their next piece of work.
+
+## The menu color table, and the 16-color icon palette (25 October 2026)
+
+Grimoire's new check against resource_dasm (`utilities/dasm_check.mjs` there)
+found both. In `mac-rsrc-types.js`, `mctb` was in `COLOR_TABLE_TYPES`, and it
+is a count and 30-byte menu color entries (Toolbox Essentials, 3-156 and
+3-157), so Cythera's `mctb` 129 read as one black swatch. `decodeMctb` reads
+each entry's menu, item and four colors, names what each color is for, and
+stops at the -99 that ends the list. systemless reads the type the same way.
+`MAC_4BIT_PAL`, clut 4 of the Mac II to G3 ROMs, had fourteen entries rounded
+and two cut to the high byte, and `readColorTable` cuts every other table, so
+all sixteen are high bytes now and five entries moved one step.
+`utilities/check.mjs` passes, and grimoire's quick suite passes with the
+copies, its resource snapshot moved for `mctb`'s line and then `icl4`'s.
+SnoidGrimoire, StarGrimoire and the player copy the file in their next piece
+of work.
