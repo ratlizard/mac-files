@@ -172,3 +172,17 @@ all sixteen are high bytes now and five entries moved one step.
 copies, its resource snapshot moved for `mctb`'s line and then `icl4`'s.
 SnoidGrimoire, StarGrimoire and the player copy the file in their next piece
 of work.
+
+## A QuickTime instrument's loop ends before loopEnd (28 October 2026)
+
+`qtmaRender` in `mac-qtmusic.js` played a sample's loop from `loopStart`
+through `loopEnd`, one sample longer than QuickTime 3 plays it, which wraps
+at `loopEnd`. Every looped note was flat by the share that sample is of its
+loop: 27 cents for the General MIDI flute's 64-sample loop, nothing to hear
+for a loop of thousands. Against recordings of Cythera's eleven tunes from
+the game, four had been 3 to 15 cents flat; with the loop ending before
+`loopEnd`, all eleven are within a cent. grimoire's log has the measurement,
+under `grimoire/qt-instruments-v56peg` the same day. The format has no other
+implementation here: systemless's tune player is an oscillator synth that
+reads no samples. Grimoire and the player copy the file in the same piece of
+work.
