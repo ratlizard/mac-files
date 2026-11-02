@@ -186,3 +186,11 @@ under `grimoire/qt-instruments-v56peg` the same day. The format has no other
 implementation here: systemless's tune player is an oscillator synth that
 reads no samples. Grimoire and the player copy the file in the same piece of
 work.
+
+## "Less" for a subtraction (1 November 2026)
+
+Two comments used "less" for a subtraction: `mac-qtmusic.js`'s stereo law
+("the gain times 2 minus it") and `mac-rsrc-types.js`'s strike offset ("that
+leftmost column minus kernMax"). Both read "minus" now, by the workspace's
+wording rule of the same day. Grimoire and the player copy both in the same
+piece of work. StarGrimoire and SnoidGrimoire take them in their next.
