@@ -194,3 +194,21 @@ Two comments used "less" for a subtraction: `mac-qtmusic.js`'s stereo law
 leftmost column minus kernMax"). Both read "minus" now, by the workspace's
 wording rule of the same day. Grimoire and the player copy both in the same
 piece of work. StarGrimoire and SnoidGrimoire take them in their next.
+
+## QuickTime's output level, as an option (3 November 2026)
+
+`qtmaRender` scaled every tune so its loudest sample was 0.95, so every
+tune came out about as loud as every other, whatever its notes. QuickTime
+3.0.2 mixes at a fixed level instead. Its PowerPlug adds each voice's
+sample, shifted right by 6, times its 16.16 volume into a 32-bit bus and
+shifts the bus right by 11 into a clipped 16-bit sample. That is half of
+the sum `qtmaRender` adds up, `QT_OUTPUT_GAIN`, and the comment above
+`qtmaRender` has the routines and offsets. With `opts.quicktimeLevel` a tune
+plays at that level, clipped at full, and keeps its loudness against the
+other tunes. Without it nothing changes. SnoidGrimoire passes it.
+Zoombinis' Isle tune at that level predicts a peak of -12.1 dB and an RMS
+of -30.2 dB, and a capture of the Mac game measures -12.6 and -30.4.
+Grimoire copies the file and does not pass the option until Cythera's
+tunes are tested at that level against its recordings
+(`grimoire/qt-level-l7ighf` in its handoff). The player and StarGrimoire
+take the file in their next piece of work.
