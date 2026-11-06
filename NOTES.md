@@ -224,4 +224,5 @@ operator among Cythera's 1,877 traceback names. The workbench's
 `cythera_symbols.txt`, recovered separately, has it as `TSegLoad::opPc`, so
 neither reading had the type. Grimoire copies the file in the same piece
 of work and its `pef_check.mjs` holds the name; with the file as it was,
-that case fails. StarGrimoire takes the file in its next piece of work.
+that case fails. StarGrimoire copies it on its front `mac-pef-copy`, which
+lands after this one.
