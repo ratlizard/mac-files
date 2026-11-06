@@ -212,3 +212,16 @@ Grimoire copies the file and does not pass the option until Cythera's
 tunes are tested at that level against its recordings
 (`grimoire/qt-level-l7ighf` in its handoff). The player and StarGrimoire
 take the file in their next piece of work.
+
+## A conversion operator's name (5 November 2026)
+
+`pefDemangle` had no case for a conversion operator, so Cythera's
+`__opPc__8TSegLoadFv` came out as `TSegLoad::__opPc()`. CodeWarrior spells
+the target type between `__op` and the next `__` in the argument codes, and
+the name now reads `TSegLoad::operator char*()`. A name whose type part is
+not exactly one argument type stays mangled. It is the only conversion
+operator among Cythera's 1,877 traceback names. The workbench's
+`cythera_symbols.txt`, recovered separately, has it as `TSegLoad::opPc`, so
+neither reading had the type. Grimoire copies the file in the same piece
+of work and its `pef_check.mjs` holds the name; with the file as it was,
+that case fails. StarGrimoire takes the file in its next piece of work.
