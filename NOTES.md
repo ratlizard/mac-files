@@ -226,3 +226,16 @@ neither reading had the type. Grimoire copies the file in the same piece
 of work and its `pef_check.mjs` holds the name; with the file as it was,
 that case fails. StarGrimoire copies it on its front `mac-pef-copy`, which
 lands after this one.
+
+## A resource fork with no resources (15 November 2026)
+
+`openResourceFork` read a fork with no resources as 65,536 types and
+stopped with an error. The map stores the type count minus one, so such a
+fork stores 0xFFFF, and the count now wraps to 0. EV Override 1.0.2's
+installer has one, its 286-byte Sample Plugin, which StarGrimoire met when
+it began to open Escape Velocity and EV Override. The reader is not a port,
+so no other program was compared. The writer refuses an empty list, so it
+never wrote such a fork. `check.mjs` builds one by hand and fails on the
+old reader. Grimoire copies the file in the same piece of work, and
+StarGrimoire copies it on its front `older-games`, which lands after this
+one.

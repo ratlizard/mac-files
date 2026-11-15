@@ -87,6 +87,18 @@ part('resource fork', () => {
   return same(g.writeResourceFork(back), fork) ? null : 'written again, the fork differs';
 });
 
+part('empty resource fork', () => {
+  // as a Mac leaves a file whose resources are all gone: the 256-byte header, a
+  // 30-byte map, and the type count stored minus one, 0xFFFF for none
+  const fork = new Uint8Array(286), put = (at, v, n) => { for (let i = n - 1; i >= 0; i--, v >>>= 8) fork[at + i] = v & 0xff; };
+  put(0, 256, 4); put(4, 256, 4); put(8, 0, 4); put(12, 30, 4);
+  fork.copyWithin(256, 0, 16);
+  put(256 + 24, 28, 2); put(256 + 26, 30, 2); put(256 + 28, CONTROL ? 0 : 0xFFFF, 2);
+  let back;
+  try { back = g.openResourceFork(fork); } catch (e) { return 'not read: ' + e.message; }
+  return back.typeList.length ? 'read with ' + back.typeList.length + ' types' : null;
+});
+
 part('macbinary', () => {
   const f = { name: 'Ünïcode file', type: 'TEXT', creator: 'ttxt', data: sample(1000), rsrc: sample(77) };
   const back = g.sniffMacContainer(flip(g.writeMacBinary(f)));
