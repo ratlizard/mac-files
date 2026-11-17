@@ -239,3 +239,17 @@ never wrote such a fork. `check.mjs` builds one by hand and fails on the
 old reader. Grimoire copies the file in the same piece of work, and
 StarGrimoire copies it on its front `older-games`, which lands after this
 one.
+
+## A picture in bands of rows (17 November 2026)
+
+`decodePict` read the first image opcode alone. Escape Velocity has twelve
+version 1 pictures drawn by several PackBitsRect opcodes, one for each band
+of rows, nine of them sprite masks, and EV Override has one. StarGrimoire
+left those masks out. `findPictImageOpcode` now takes where an image ended
+and goes on from there, and `decodePict` draws every image at its
+destination within the picture's frame and counts them in `images`. The
+decoder is not a port, so no other program was compared. Every Cythera
+picture has one image, and grimoire's resource snapshot did not change.
+StarGrimoire's `page_check` decodes PICT 1013 as eight bands, 432 × 432.
+Grimoire copies the file in the same piece of work, and StarGrimoire copies
+it on its front `elders`, which lands after this one.
